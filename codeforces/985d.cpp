@@ -2,48 +2,31 @@
 #include <bits/stdc++.h>
 #include <vector>
 
+typedef long long ll;
+typedef long double ld;
 
-#define fr(i, n) for(int (i)=0; (i)<(n); (i)++)
-#define frp(i, a, b) for(int (i)=a; (i)<(b); (i)++)
-#define frn(i, a, b) for(int (i)=a; (i)>(b); (i)--)
+#define fr(n) for(long long int (i)=0; (i)<(n); (i)++)
+#define frp(a, b) for(int (i)=a; (i)<(b); (i)++)
+#define frn(a, b) for(int (i)=a; (i)>(b); (i)--)
 
 #define p(aaa) cout<<"debug "<<aaa<<endl;
 #define PI 3.14159265358979323846
 
 using namespace std;
-// int i, j;
+ll n, H;
+
 int main(){
-	// printf("Hello\n");
-	char ac[2001][2001];
-	int b[2001], c[2001], n, m;
-	memset(b, 0, 2000);
-	memset(c, 0, 2000);
-	cin>>n>>m;
-	fr(i, n){
-		fr(j, m){
-			cin>>ac[i][j];
-			b[j] += (ac[i][j] - 48);
-		}
+	cin>>n>>H;
+	ll a=sqrt(n)-1, b=2*sqrt(n)+1, s;
+	while(b-a>1){
+		s = (a+b)/2;
+		ll h = min(s,H);
+		if((s*s - h*(h-1)/2) > n) b=s;
+		else a=s;
 	}
-	int flag = 0;
-	int jcnt=0;	
-	fr(i, n){
-		fr(j, m){
-			c[j] = b[j] - (ac[i][j] - 48);
-			if(!c[j]) break;
-			jcnt += 1;
-		}
-		// printf("%d\n", jcnt);
-		if(jcnt==m) flag = 1;
-		if (flag){
-			printf("YES\n");
-			return 0;
-		}
-		// fr(j, m){
-		// 	b[j] += (ac[i][j] - 48);
-		// }
-		jcnt=0;
-	}
-	printf("NO\n");
+	ll h = min(H,a);
+	ll diff = n - a*a + h*(h-1)/2;
+	if(diff%a) cout<<2*a-h+diff/a+1<<endl;
+	else cout<<2*a-h+diff/a<<endl;
 	return 0;
 }
