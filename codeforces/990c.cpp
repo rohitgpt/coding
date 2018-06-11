@@ -1,8 +1,8 @@
 #include <iostream>
 #include <bits/stdc++.h>
-#include <vector>
-#include <string>
-#include <algorithm>
+// #include <vector>
+// #include <string>
+// #include <algorithm>
 
 typedef long long ll;
 typedef long double ld;
@@ -19,18 +19,44 @@ using namespace std;
 const int mod = 1e9+7;
 const int mx = 3e5+100;
 int main(){
-	int n;
-	int indices[mx];
-	char a[mx];
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	ll  n,ans=0;
+	// char a[mx];
+	char tmp[mx];
+	int value[mx];//,indices[mx], len[mx];
+	int minv[mx];
+	memset(minv, 0, sizeof(minv));
+	memset(value, 0, sizeof(value));
 	cin>>n;
-	indices[0] = 0;
+	// indices[0] = 0;
 	f(i, n){
-		char* tmp = &a[indices[i]];
+		// char* tmp = &a[indices[i]];
 		cin>>tmp;
-		indices[i+1] = indices[i]+strlen(tmp);
+		f(j, strlen(tmp)){
+			if(tmp[j]=='(') value[i]+=1;
+			else value[i]-=1;
+			// else if(tmp[j]==')') value[i]-=1;
+			if(value[i]<minv[i]) minv[i]=value[i];
+		}
+		// indices[i+1] = indices[i]+strlen(tmp);
+		// len[i] = strlen(tmp);
 	}
-	f(i, n)cout<<a[indices[i]]<<" "<<indices[i]<<endl;
-	// f(i, n) cin>>a[i];
-	// p(a[0]);
+	f(i, n){
+		if(minv[i]>=0){
+			f(j,n){
+				if(value[i]+value[j]==0) if(value[i]+minv[j]>=0) ans+=1;
+				// p(value[i]+value[j]);
+				// if(value[i]+value[j]) continue;
+				// if(value[i]+minv[j]<0) continue; 
+				// cout<<i<<j<<endl;
+				// ans+=1;
+			}
+		}
+
+	}
+	cout<<ans<<endl;
 	return 0;
 }
