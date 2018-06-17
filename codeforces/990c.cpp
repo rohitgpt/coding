@@ -1,20 +1,25 @@
 #include <iostream>
+// #include <chrono>
 #include <bits/stdc++.h>
-// #include <vector>
-// #include <string>
+#include <vector>
+#include <string>
 // #include <algorithm>
+using namespace std;
+// using namespace std::chrono;
 
+// typedef std::chrono::high_resolution_clock::time_point timen;
 typedef long long ll;
 typedef long double ld;
 
+#define duration(a) std::chrono::duration_cast<std::chrono::nanoseconds>(a).count()
+#define timeNow() std::chrono::high_resolution_clock::now()
 #define f(i, n) for(int (i)=0; (i)<(n); (i)++)
 #define frp(i, a, b) for(int (i)=a; (i)<(b); (i)++)
 #define frn(i, a, b) for(int (i)=a; (i)>(b); (i)--)
 
-#define p(aaa) cout<<"debug "<<aaa<<endl;
+#define p(aaa) cout<<"debug "<<aaa<<" ";
 #define PI 3.14159265358979323846
 
-using namespace std;
 
 const int mod = 1e9+7;
 const int mx = 3e5+100;
@@ -24,39 +29,38 @@ int main(){
 	cout.tie(NULL);
 
 	ll  n,ans=0;
-	// char a[mx];
-	char tmp[mx];
-	int value[mx];//,indices[mx], len[mx];
+	vector<string> tmp;
+	string t;
+	int value[mx];
 	int minv[mx];
-	memset(minv, 0, sizeof(minv));
+	int cnt[mx], temp;
+	memset(minv, mod, sizeof(minv));
 	memset(value, 0, sizeof(value));
+	memset(cnt, 0, sizeof(cnt));
 	cin>>n;
-	// indices[0] = 0;
+
+	// timen start = timeNow();
+
 	f(i, n){
-		// char* tmp = &a[indices[i]];
-		cin>>tmp;
-		f(j, strlen(tmp)){
-			if(tmp[j]=='(') value[i]+=1;
+		cin>>t;
+		tmp.push_back(t);
+	}
+	f(i, n){
+		f(j, tmp[i].size()){
+			if(tmp[i][j]=='(') value[i]+=1;
 			else value[i]-=1;
-			// else if(tmp[j]==')') value[i]-=1;
 			if(value[i]<minv[i]) minv[i]=value[i];
 		}
-		// indices[i+1] = indices[i]+strlen(tmp);
-		// len[i] = strlen(tmp);
+		if(value[i]<=0 && value[i]==minv[i])	cnt[-value[i]] += 1;
 	}
 	f(i, n){
 		if(minv[i]>=0){
-			f(j,n){
-				if(value[i]+value[j]==0) if(value[i]+minv[j]>=0) ans+=1;
-				// p(value[i]+value[j]);
-				// if(value[i]+value[j]) continue;
-				// if(value[i]+minv[j]<0) continue; 
-				// cout<<i<<j<<endl;
-				// ans+=1;
-			}
+			ans+=cnt[value[i]];
 		}
-
 	}
+
+	// stop = timeNow();
+	// cout <<"process time: "<<duration(stop-start)/1000 << endl;
 	cout<<ans<<endl;
 	return 0;
 }

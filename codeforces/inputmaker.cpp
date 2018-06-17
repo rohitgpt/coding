@@ -9,12 +9,19 @@ int main(){
 	cin>>n;
 	ofstream file;
 	file.open("input.txt");
-	file<<n<<endl;
-	for (int i = 0; i < n; ++i)
+	file<<2<<endl;
+	for (int i = 0; i < n/2-1; ++i)
 	{
-		file<<"()"<<endl;
+		file<<"(";
 		/* code */
 	}
+	file<<endl;
+	for (int i = 0; i < n/2-1; ++i)
+	{
+		file<<"(";
+		/* code */
+	}
+
 	file.close();
 	return 0;
 }

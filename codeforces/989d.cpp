@@ -24,23 +24,26 @@ int main(){
 	cin.tie(NULL);
 	cout.tie(NULL);
 
-	int n,l,w_max;
-	double x[mx], v[mx];
+	int n,w_max;
 	int ans=0;
+	double l,x[mx], v[mx];
+	double den, frac;
 	cin>>n>>l>>w_max;
 	f(i,n){
 		cin>>x[i]>>v[i];
-		x[i]+=(double)l/2;
+		x[i]+=l/2;
 	}
-	double den, frac;
 	f(i,n){
 		frp(j,i,n){
+			// p(j);
 			den = 1/x[i]-1/x[j];
-			if(!den) continue;
+			if(den==0) continue;
 			frac = (v[j]/x[j]-v[i]/x[i])/den;
 			if(frac+v[i]==0 || frac+v[j]==0 || -x[i]/(frac+v[i])<0) continue;
-			// cout<<i+1<<j+1<<frac<<endl;
-			if(abs(frac)<=w_max) ans+=1;
+			if(abs(frac)<=w_max){
+				ans+=1;
+				// cout<<i+1<<j+1<<frac<<endl;
+			}
 		}
 	}
 	cout<<ans<<endl;
