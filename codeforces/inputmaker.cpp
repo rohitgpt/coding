@@ -9,21 +9,14 @@ int main(){
 	cin>>n;
 	ofstream file;
 	file.open("input.txt");
-	file<<n<<" 1758 "<<n/2<<endl;
-	// file<<n<<" "<<25<<" "<<n/3<<endl;
-	for (int i = 1; i <= 1758; ++i)
+	file<<n<<endl;
+	for (int i = 0; i < n; ++i)
 	{
-		file<<i*n/1758<<" ";
-		// if((i%(n/4))==0)		file<<i<<" ";
-		/* code */
+		long long a=rand();
+		long long b=rand();
+		if(a>b) file<<b<<" "<<a<<endl;
+		else file<<a<<" "<<b<<endl;
 	}
-	file<<endl;
-	for (int i = 1; i < n+1; ++i)
-	{
-		file<<i<<" "<<i+1<<endl;
-		/* code */
-	}
-
 	file.close();
 	return 0;
 }

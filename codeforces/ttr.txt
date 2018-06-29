@@ -1,0 +1,4 @@
+Problems faced
+
+recursive function define variables locally within the function
+vector assigning
