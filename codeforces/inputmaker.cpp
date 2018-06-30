@@ -9,13 +9,10 @@ int main(){
 	cin>>n;
 	ofstream file;
 	file.open("input.txt");
-	file<<n<<endl;
+	file<<n<<" "<<n/2<<endl;
 	for (int i = 0; i < n; ++i)
 	{
-		long long a=rand();
-		long long b=rand();
-		if(a>b) file<<b<<" "<<a<<endl;
-		else file<<a<<" "<<b<<endl;
+		file<<1000000000<<" ";
 	}
 	file.close();
 	return 0;
