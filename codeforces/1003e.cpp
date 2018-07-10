@@ -25,13 +25,6 @@ typedef long double ld;
 const int mod=1e9+7;
 const int mx=2e5+1000;
 
-
-int powerof2(int a){
-	int i=0, tmp=1;
-	for(i=0; tmp<=a; i++) tmp*=2;
-	return i-1;
-}
-
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);

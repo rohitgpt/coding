@@ -10,11 +10,10 @@ int main(){
 	cin>>n;
 	ofstream file;
 	file.open("input.txt");
-	long long temp=2;
-	file<<n<<" "<<1<<endl;
+	file<<n<<endl;
 	for (int i = 0; i < n; ++i)
 	{
-		file<<1<<" ";
+		file<<"u ";
 	}
 	file.close();
 	return 0;
