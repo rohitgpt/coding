@@ -43,23 +43,26 @@ int main(){
 		b=e;
 	}
 	m=(a.size()+1)/2;
-	s=m;
-	int p=0;
+	s=(m+1)/2;
+	int p=-1;
 	flag=1;
 	while(flag){
+		// cout<<a.size()<<b.size()<<m<<endl;
 		c=a.substr(a.size()-m, m);
 		d=b.substr(b.size()-m, m);
-		// cout<<c<<" "<<d<<endl;
-		if(c.compare(d)==0) m+=(s+1)/2;
-		else m-=(s+1)/2;
-		if(p==m){
-			// cout<<m<<endl;
-			cout<<(a.size()+b.size()-2*m)<<endl;
-			// if()
-			return 0;
+		// cout<<s<<" "<<c<<" "<<d<<endl;
+		if(c.compare(d)==0){
+			m+=s;
+			if(s<=1 && p>=0 || m>a.size()){
+				cout<<(a.size()+b.size()-2*(m-1))<<endl;
+				return 0;
+			}	
+		}
+		else{
+			m-=s;
 		}
 		p=m;
-		s=(s-1)/2;
+		s=(s+1)/2;
 	}
 	return 0;
 }
