@@ -13,7 +13,7 @@ int main(){
 	file<<n<<endl;
 	for (int i = 0; i < n; ++i)
 	{
-		file<<"u ";
+		file<<i+1<<" ";
 	}
 	file.close();
 	return 0;
