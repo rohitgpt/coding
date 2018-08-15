@@ -29,9 +29,16 @@ int n, m, q, t1, t2, ans=0, cnt=0;
 vector<int> V[mx], v(6), flag(5);
 
 void r(int r1, int c1, int r2, int c2){
-	if(c2-c1+r2-r1==2){
+	if(c2-c1==0 || r2-r1==0){
+		ans+=n*m-q;
+		return;
+	}
+	if(c2-c1==1 && r2-r1==1){
 		vector<int>(5).swap(flag);
 		v[1]=V[r1][c1], v[2]=V[r1][c2], v[3]=V[r2][c1] ,v[4]=V[r2][c2];
+		// cout<<"Looking at"<<endl;
+		// cout<<v[1]<<" "<<v[2]<<endl;
+		// cout<<v[3]<<" "<<v[4]<<endl;
 		v[5]=v[1]+v[2]+v[3]+v[4];
 		if(v[5]==4) return;
 		else if(v[5]==3){
@@ -49,6 +56,7 @@ void r(int r1, int c1, int r2, int c2){
 					cnt+=1;
 					if(cnt>1) break;
 					ans+=1;
+					// cout<<"Adding"<<endl;
 				}
 			
 		}
@@ -60,6 +68,7 @@ void r(int r1, int c1, int r2, int c2){
 					cnt+=1;
 					if(cnt>2) break;
 					ans+=1;
+					// cout<<"Adding"<<endl;
 				}
 		}
 		else{
@@ -70,6 +79,7 @@ void r(int r1, int c1, int r2, int c2){
 					cnt+=1;
 					if(cnt>3) break;
 					ans+=1;
+					// cout<<"Adding"<<endl;
 				}
 		}
 		if(flag[1]==1) V[r1][c1]=1;
@@ -102,10 +112,9 @@ int main(){
 	
 	f(i, q){
 		cin>>t1>>t2;
-		V[t1][t2]=1;
+		V[t1-1][t2-1]=1;
 	}
 
-	cout<<"hello"<<endl;
 
 	r(0, 0, n-1, m-1);
 
