@@ -25,7 +25,7 @@ typedef long double ld;
 const int mod=1e9+7;
 const int mx=2e5+1000;
 
-int n, m, q, t1, t2, ans=0;
+int n, m, q, t1, t2, ans=0, cnt=0;
 vector<int> V[mx], v(6), flag(5);
 
 void r(int r1, int c1, int r2, int c2){
@@ -42,33 +42,33 @@ void r(int r1, int c1, int r2, int c2){
 				}
 		}
 		else if(v[5]==2){
-			count=0;
+			cnt=0;
 			frp(i, 1, 5)
 				if(v[i]!=1){
 					flag[i]=1;
-					count+=1;
-					if(count>1) break;
+					cnt+=1;
+					if(cnt>1) break;
 					ans+=1;
 				}
 			
 		}
 		else if(v[5]==1){
-			count=0;
+			cnt=0;
 			frp(i, 1, 5)
 				if(v[i]!=1){
 					flag[i]=1;
-					count+=1;
-					if(count>2) break;
+					cnt+=1;
+					if(cnt>2) break;
 					ans+=1;
 				}
 		}
 		else{
-			count=0;
+			cnt=0;
 			frp(i, 1, 5)
 				if(v[i]!=1){
 					flag[i]=1;
-					count+=1;
-					if(count>3) break;
+					cnt+=1;
+					if(cnt>3) break;
 					ans+=1;
 				}
 		}
@@ -105,11 +105,9 @@ int main(){
 		V[t1][t2]=1;
 	}
 
-	r(0, 0, n-1, m-1);
+	cout<<"hello"<<endl;
 
-	f(i, n)
-		f(j, m)
-			if(V[i][j]==2) ans+=1;
+	r(0, 0, n-1, m-1);
 
 	cout<<ans<<endl;
 	return 0;
