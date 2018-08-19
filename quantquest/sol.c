@@ -22,7 +22,7 @@ END OF PROBLEM STATEMENT
 
  */
 
-#define SMALLEST_MIN	2
+#define SMALLEST_MIN	1
 #define LARGEST_MIN	10
 #define SMALLEST_MAX	50
 #define LARGEST_MAX	1000
@@ -51,7 +51,7 @@ void find(long min, long max)
 	for(i = min + min; i <= max + max; ++i) {
 
 		for(j = i / 2; j >= min; --j)
-			if(P[j * (i - j)] < 2 && j<max && (i-j)<max)
+			if(P[j * (i - j)] < 2)
 				break;
 
 		S[i] = j;
@@ -65,7 +65,7 @@ void find(long min, long max)
 	for(i = min + min; i <= max + max; ++i)
 		if(S[i] == min - 1)
 			for(j = i / 2; j >= min; --j)
-				if(P[j * (i - j)] > 1 && j<max && (i-j)<max)
+				if(P[j * (i - j)] > 1)
 					P[j * (i - j)] += 2*max;
 					// P[j * (i - j)] += 1000;
 
@@ -76,16 +76,16 @@ void find(long min, long max)
 	for(i = min + min; i <= max + max; ++i)
 		if(S[i] == min - 1)
 			for(j = i / 2; j >= min; --j)
-				if(P[j * (i - j)] / 1000 == 1 && j<max && (i-j)<max)
-					S[i] += 1000;
+				if(P[j * (i - j)] / (2*max) == 1)
+					S[i] += 2*max;
 	/*
 	 *	find the answer(s) and print them
 	 */
 	printf("[%ld,%ld]\n",min,max);
 	for(i = min + min; i <= max + max; ++i)
-		if(S[i] == 999 + min)
+		if(S[i] == (2*max-1) + min)
 			for(j = i / 2; j >= min; --j)
-				if(P[j * (i - j)] / 1000 == 1 && j<max && (i-j)<max)
+				if(P[j * (i - j)] / (2*max) == 1)
 					printf("{ %ld %ld }: S = %ld, P = %ld\n",
 						i - j, j, i, (i - j)  * j);
 }
