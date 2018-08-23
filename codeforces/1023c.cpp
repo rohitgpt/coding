@@ -40,13 +40,16 @@ int main(){
 	cin>>s;
 
 	f(i,n){
-		if(s[i]=="("){
+		if(s[i]=='('){
 			stack.pb(i);
 		}
-		if(s[i]==")"){
+		if(s[i]==')'){
 			u[i]=1;
-			u[stack.pop_back()]=1;
-			t1+=1;
+			// cout<<stack.back();
+			u[stack.back()]=1;
+			stack.pop_back();
+			t1+=2;
+			if(t1>=k) break;
 		}
 	}
 	f(i, n){
