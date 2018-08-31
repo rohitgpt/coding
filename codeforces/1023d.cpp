@@ -48,7 +48,6 @@ int main(){
 				break;
 			}
 		}
-		// else if(a[i-1]!=0)	a[i]=a[i-1];
 		// else if(a[i+1]!=0)	a[i]=a[i+1];
 	}
 
