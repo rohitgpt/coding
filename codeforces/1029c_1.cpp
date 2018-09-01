@@ -39,16 +39,16 @@ int main(){
 		l.pb(t1); r.pb(t2);
 	}
 	pl.pb(l[0]); pr.pb(r[0]);
+	sl.pb(l[n-1]); sr.pb(r[n-1]);
 	frp(i, 1, n){
 		pl.pb(max(pl[i-1], l[i]));
 		pr.pb(min(pr[i-1], r[i]));
+		sl.insert(sl.begin(), max(sl[0], l[n-i]));
+		sr.insert(sr.begin(), min(sr[0], r[n-i]));
 	}
 
-	sl.push_front(l[n-1]); sr.push_front(r[n-1]);
-	frn(i, n-2, -1){
-		sl.push_front(max(sl[0], l[i]));
-		sr.push_front(min(sr[0], r[i]));
-	}
+	// frn(i, n-2, -1){
+	// }
 	// frn(i, n-1, 1)
 	// 	pl.pb(*max_element(l.begin(), l.begin()+i));
 	// 	pr.pb(*min_element(r.begin(), r.begin()+i));
