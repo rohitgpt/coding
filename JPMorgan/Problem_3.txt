@@ -1,0 +1,17 @@
+Problem Approach
+
+Using the dynamics of given stock prices we simulated values of X and Y 
+10000 times.
+A day is treated as dt. And a year consists of 252 days.
+Then
+sigmaX, sigmaY are standard deviation of series {log(X_{t+1})-log(X_t)} and 
+{log(Y_{t+1})-log(Y_t)} respectively
+rho = pearsonr({log(X_{t+1})-log(X_t)},{log(Y_{t+1})-log(Y_t)}).
+Then \epsilon_1 and \epsilon_2 are drawn from the bivariate normal distribution
+with cross variance equal to rho
+
+For every simulation, we calulated the payoff by adding all the payoffs when
+Ti=t0 + 0.25*i*years.
+The expected value of payoff is obtained using mean over all the simulations
+Then, final price is calculated using the given formula
+Price = E[Payoff]*exp(-1*r*T) where T = 252 days

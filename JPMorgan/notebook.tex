@@ -1,0 +1,363 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Untitled}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Approach}\label{approach}
+
+    \subsubsection{First we calculate sigmaX and sigmaY as explained in the
+problem. rho is calculated using pearsonr() function in scipy
+library.}\label{first-we-calculate-sigmax-and-sigmay-as-explained-in-the-problem.-rho-is-calculated-using-pearsonr-function-in-scipy-library.}
+
+\subsubsection{epsilon1 and epsilon2 are drawn from a bivariate normal
+distribution using multivariate\_normal function in numpy
+library.}\label{epsilon1-and-epsilon2-are-drawn-from-a-bivariate-normal-distribution-using-multivariate_normal-function-in-numpy-library.}
+
+\subsubsection{We run 10000 simulation for X and Y values. Year is
+discretised in 252 days. For all days X and Y are updated as X=X+dX and
+Y=Y+dY. If Ti = 0.25*i*years, payoff is calculated and all payoffs are
+summed at the end of the year. Expected value of payoff is calculated
+over all the simulation as mean of all the payoffs. Then price of the
+product is calculated using the formula
+given.}\label{we-run-10000-simulation-for-x-and-y-values.-year-is-discretised-in-252-days.-for-all-days-x-and-y-are-updated-as-xxdx-and-yydy.-if-ti-0.25iyears-payoff-is-calculated-and-all-payoffs-are-summed-at-the-end-of-the-year.-expected-value-of-payoff-is-calculated-over-all-the-simulation-as-mean-of-all-the-payoffs.-then-price-of-the-product-is-calculated-using-the-formula-given.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{r} \PY{o}{=} \PY{l+m+mf}{0.01}
+        \PY{n}{N} \PY{o}{=} \PY{l+m+mi}{4}
+        \PY{n}{X\PYZus{}SPOT} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{2443.25}\PY{p}{,}\PY{l+m+mf}{2447.83}\PY{p}{,}\PY{l+m+mf}{2459.27}\PY{p}{,}\PY{l+m+mf}{2459.14}\PY{p}{,}\PY{l+m+mf}{2460.61}\PY{p}{,}\PY{l+m+mf}{2473.83}\PY{p}{,}\PY{l+m+mf}{2473.45}\PY{p}{,}\PY{l+m+mf}{2472.54}\PY{p}{,}\PY{l+m+mf}{2469.91}\PY{p}{,}\PY{l+m+mf}{2477.13}\PY{p}{,}\PY{l+m+mf}{2477.83}\PY{p}{,}\PY{l+m+mf}{2475.42}\PY{p}{,}\PY{l+m+mf}{2472.1}\PY{p}{,}\PY{l+m+mf}{2470.3}\PY{p}{,}\PY{l+m+mf}{2476.35}\PY{p}{,}\PY{l+m+mf}{2477.57}\PY{p}{,}\PY{l+m+mf}{2472.16}\PY{p}{,}\PY{l+m+mf}{2476.83}\PY{p}{,}\PY{l+m+mf}{2480.91}\PY{p}{,}\PY{l+m+mf}{2474.92}\PY{p}{,}\PY{l+m+mf}{2474.02}\PY{p}{,}\PY{l+m+mf}{2438.21}\PY{p}{,}\PY{l+m+mf}{2441.32}\PY{p}{,}\PY{l+m+mf}{2465.84}\PY{p}{,}\PY{l+m+mf}{2464.61}\PY{p}{,}\PY{l+m+mf}{2468.11}\PY{p}{,}\PY{l+m+mf}{2430.01}\PY{p}{,}\PY{l+m+mf}{2425.55}\PY{p}{,}\PY{l+m+mf}{2428.37}\PY{p}{,}\PY{l+m+mf}{2452.51}\PY{p}{,}\PY{l+m+mf}{2444.04}\PY{p}{,}\PY{l+m+mf}{2438.97}\PY{p}{,}\PY{l+m+mf}{2443.05}\PY{p}{,}\PY{l+m+mf}{2444.24}\PY{p}{,}\PY{l+m+mf}{2446.3}\PY{p}{,}\PY{l+m+mf}{2457.59}\PY{p}{,}\PY{l+m+mf}{2471.65}\PY{p}{,}\PY{l+m+mf}{2476.55}\PY{p}{,}\PY{l+m+mf}{2457.85}\PY{p}{,}\PY{l+m+mf}{2457.85}\PY{p}{,}\PY{l+m+mf}{2465.54}\PY{p}{,}\PY{l+m+mf}{2465.1}\PY{p}{,}\PY{l+m+mf}{2461.43}\PY{p}{,}\PY{l+m+mf}{2488.11}\PY{p}{,}\PY{l+m+mf}{2496.48}\PY{p}{,}\PY{l+m+mf}{2498.37}\PY{p}{,}\PY{l+m+mf}{2495.62}\PY{p}{,}\PY{l+m+mf}{2500.23}\PY{p}{,}\PY{l+m+mf}{2503.87}\PY{p}{,}\PY{l+m+mf}{2506.65}\PY{p}{,}\PY{l+m+mf}{2508.24}\PY{p}{,}\PY{l+m+mf}{2500.6}\PY{p}{,}\PY{l+m+mf}{2502.22}\PY{p}{,}\PY{l+m+mf}{2496.66}\PY{p}{,}\PY{l+m+mf}{2496.84}\PY{p}{,}\PY{l+m+mf}{2507.04}\PY{p}{,}\PY{l+m+mf}{2510.06}\PY{p}{,}\PY{l+m+mf}{2519.36}\PY{p}{,}\PY{l+m+mf}{2529.12}\PY{p}{,}\PY{l+m+mf}{2534.58}\PY{p}{,}\PY{l+m+mf}{2537.74}\PY{p}{,}\PY{l+m+mf}{2552.07}\PY{p}{,}\PY{l+m+mf}{2549.33}\PY{p}{,}\PY{l+m+mf}{2544.73}\PY{p}{,}\PY{l+m+mf}{2550.64}\PY{p}{,}\PY{l+m+mf}{2555.24}\PY{p}{,}\PY{l+m+mf}{2550.93}\PY{p}{,}\PY{l+m+mf}{2553.17}\PY{p}{,}\PY{l+m+mf}{2557.64}\PY{p}{,}\PY{l+m+mf}{2559.36}\PY{p}{,}\PY{l+m+mf}{2561.26}\PY{p}{,}\PY{l+m+mf}{2562.1}\PY{p}{,}\PY{l+m+mf}{2575.21}\PY{p}{,}\PY{l+m+mf}{2564.98}\PY{p}{,}\PY{l+m+mf}{2569.13}\PY{p}{,}\PY{l+m+mf}{2557.15}\PY{p}{,}\PY{l+m+mf}{2560.4}\PY{p}{,}\PY{l+m+mf}{2581.07}\PY{p}{,}\PY{l+m+mf}{2572.83}\PY{p}{,}\PY{l+m+mf}{2575.26}\PY{p}{,}\PY{l+m+mf}{2579.36}\PY{p}{,}\PY{l+m+mf}{2579.85}\PY{p}{,}\PY{l+m+mf}{2587.84}\PY{p}{,}\PY{l+m+mf}{2591.13}\PY{p}{,}\PY{l+m+mf}{2590.64}\PY{p}{,}\PY{l+m+mf}{2594.38}\PY{p}{,}\PY{l+m+mf}{2584.62}\PY{p}{,}\PY{l+m+mf}{2582.3}\PY{p}{,}\PY{l+m+mf}{2584.84}\PY{p}{,}\PY{l+m+mf}{2578.87}\PY{p}{,}\PY{l+m+mf}{2564.62}\PY{p}{,}\PY{l+m+mf}{2585.64}\PY{p}{,}\PY{l+m+mf}{2578.85}\PY{p}{,}\PY{l+m+mf}{2582.14}\PY{p}{,}\PY{l+m+mf}{2599.03}\PY{p}{,}\PY{l+m+mf}{2597.08}\PY{p}{,}\PY{l+m+mf}{2602.42}\PY{p}{,}\PY{l+m+mf}{2602.42}\PY{p}{,}\PY{l+m+mf}{2601.42}\PY{p}{,}\PY{l+m+mf}{2627.04}\PY{p}{,}\PY{l+m+mf}{2626.07}\PY{p}{,}\PY{l+m+mf}{2647.58}\PY{p}{,}\PY{l+m+mf}{2642.22}\PY{p}{,}\PY{l+m+mf}{2639.44}\PY{p}{,}\PY{l+m+mf}{2629.57}\PY{p}{,}\PY{l+m+mf}{2629.27}\PY{p}{,}\PY{l+m+mf}{2636.98}\PY{p}{,}\PY{l+m+mf}{2651.5}\PY{p}{,}\PY{l+m+mf}{2659.99}\PY{p}{,}\PY{l+m+mf}{2664.11}\PY{p}{,}\PY{l+m+mf}{2662.85}\PY{p}{,}\PY{l+m+mf}{2652.01}\PY{p}{,}\PY{l+m+mf}{2675.81}\PY{p}{,}\PY{l+m+mf}{2690.16}\PY{p}{,}\PY{l+m+mf}{2681.47}\PY{p}{,}\PY{l+m+mf}{2679.25}\PY{p}{,}\PY{l+m+mf}{2684.57}\PY{p}{,}\PY{l+m+mf}{2683.34}\PY{p}{,}\PY{l+m+mf}{2680.5}\PY{p}{,}\PY{l+m+mf}{2680.5}\PY{p}{,}\PY{l+m+mf}{2682.62}\PY{p}{,}\PY{l+m+mf}{2687.54}\PY{p}{,}\PY{l+m+mf}{2673.61}\PY{p}{,}\PY{l+m+mf}{2695.81}\PY{p}{,}\PY{l+m+mf}{2695.81}\PY{p}{,}\PY{l+m+mf}{2713.06}\PY{p}{,}\PY{l+m+mf}{2723.99}\PY{p}{,}\PY{l+m+mf}{2743.15}\PY{p}{,}\PY{l+m+mf}{2747.71}\PY{p}{,}\PY{l+m+mf}{2751.29}\PY{p}{,}\PY{l+m+mf}{2748.23}\PY{p}{,}\PY{l+m+mf}{2767.56}\PY{p}{,}\PY{l+m+mf}{2786.24}\PY{p}{,}\PY{l+m+mf}{2776.42}\PY{p}{,}\PY{l+m+mf}{2776.42}\PY{p}{,}\PY{l+m+mf}{2802.56}\PY{p}{,}\PY{l+m+mf}{2798.03}\PY{p}{,}\PY{l+m+mf}{2810.3}\PY{p}{,}\PY{l+m+mf}{2832.97}\PY{p}{,}\PY{l+m+mf}{2839.13}\PY{p}{,}\PY{l+m+mf}{2837.54}\PY{p}{,}\PY{l+m+mf}{2839.25}\PY{p}{,}\PY{l+m+mf}{2872.87}\PY{p}{,}\PY{l+m+mf}{2853.53}\PY{p}{,}\PY{l+m+mf}{2822.43}\PY{p}{,}\PY{l+m+mf}{2823.81}\PY{p}{,}\PY{l+m+mf}{2821.98}\PY{p}{,}\PY{l+m+mf}{2762.13}\PY{p}{,}\PY{l+m+mf}{2648.94}\PY{p}{,}\PY{l+m+mf}{2695.14}\PY{p}{,}\PY{l+m+mf}{2681.66}\PY{p}{,}\PY{l+m+mi}{2581}\PY{p}{,}\PY{l+m+mf}{2619.55}\PY{p}{,}\PY{l+m+mi}{2656}\PY{p}{,}\PY{l+m+mf}{2662.94}\PY{p}{,}\PY{l+m+mf}{2698.63}\PY{p}{,}\PY{l+m+mf}{2731.2}\PY{p}{,}\PY{l+m+mf}{2732.22}\PY{p}{,}\PY{l+m+mf}{2716.26}\PY{p}{,}\PY{l+m+mf}{2716.26}\PY{p}{,}\PY{l+m+mf}{2701.33}\PY{p}{,}\PY{l+m+mf}{2703.96}\PY{p}{,}\PY{l+m+mf}{2747.3}\PY{p}{,}\PY{l+m+mf}{2779.6}\PY{p}{,}\PY{l+m+mf}{2744.28}\PY{p}{,}\PY{l+m+mf}{2713.83}\PY{p}{,}\PY{l+m+mf}{2677.67}\PY{p}{,}\PY{l+m+mf}{2691.25}\PY{p}{,}\PY{l+m+mf}{2720.94}\PY{p}{,}\PY{l+m+mf}{2728.12}\PY{p}{,}\PY{l+m+mf}{2726.8}\PY{p}{,}\PY{l+m+mf}{2738.97}\PY{p}{,}\PY{l+m+mf}{2786.57}\PY{p}{,}\PY{l+m+mf}{2783.02}\PY{p}{,}\PY{l+m+mf}{2765.31}\PY{p}{,}\PY{l+m+mf}{2749.48}\PY{p}{,}\PY{l+m+mf}{2747.33}\PY{p}{,}\PY{l+m+mf}{2752.01}\PY{p}{,}\PY{l+m+mf}{2712.92}\PY{p}{,}\PY{l+m+mf}{2716.94}\PY{p}{,}\PY{l+m+mf}{2711.93}\PY{p}{,}\PY{l+m+mf}{2643.69}\PY{p}{,}\PY{l+m+mf}{2588.26}\PY{p}{,}\PY{l+m+mf}{2658.55}\PY{p}{,}\PY{l+m+mf}{2612.62}\PY{p}{,}\PY{l+m+mi}{2605}\PY{p}{,}\PY{l+m+mf}{2640.87}\PY{p}{,}\PY{l+m+mf}{2581.88}\PY{p}{,}\PY{l+m+mf}{2581.88}\PY{p}{,}\PY{l+m+mf}{2614.45}\PY{p}{,}\PY{l+m+mf}{2644.69}\PY{p}{,}\PY{l+m+mf}{2662.84}\PY{p}{,}\PY{l+m+mf}{2604.47}\PY{p}{,}\PY{l+m+mf}{2613.16}\PY{p}{,}\PY{l+m+mf}{2656.87}\PY{p}{,}\PY{l+m+mf}{2642.19}\PY{p}{,}\PY{l+m+mf}{2663.99}\PY{p}{,}\PY{l+m+mf}{2656.3}\PY{p}{,}\PY{l+m+mf}{2677.84}\PY{p}{,}\PY{l+m+mf}{2706.39}\PY{p}{,}\PY{l+m+mf}{2708.64}\PY{p}{,}\PY{l+m+mf}{2693.13}\PY{p}{,}\PY{l+m+mf}{2670.14}\PY{p}{,}\PY{l+m+mf}{2670.29}\PY{p}{,}\PY{l+m+mf}{2634.56}\PY{p}{,}\PY{l+m+mf}{2639.4}\PY{p}{,}\PY{l+m+mf}{2666.94}\PY{p}{,}\PY{l+m+mf}{2669.91}\PY{p}{,}\PY{l+m+mf}{2648.05}\PY{p}{,}\PY{l+m+mf}{2654.8}\PY{p}{,}\PY{l+m+mf}{2635.67}\PY{p}{,}\PY{l+m+mf}{2629.73}\PY{p}{,}\PY{l+m+mf}{2663.42}\PY{p}{,}\PY{l+m+mf}{2672.63}\PY{p}{,}\PY{l+m+mf}{2671.92}\PY{p}{,}\PY{l+m+mf}{2697.79}\PY{p}{,}\PY{l+m+mf}{2723.07}\PY{p}{,}\PY{l+m+mf}{2727.72}\PY{p}{,}\PY{l+m+mf}{2730.13}\PY{p}{,}\PY{l+m+mf}{2711.45}\PY{p}{,}\PY{l+m+mf}{2722.46}\PY{p}{,}\PY{l+m+mf}{2720.13}\PY{p}{,}\PY{l+m+mf}{2712.97}\PY{p}{,}\PY{l+m+mf}{2733.01}\PY{p}{,}\PY{l+m+mf}{2724.44}\PY{p}{,}\PY{l+m+mf}{2733.29}\PY{p}{,}\PY{l+m+mf}{2727.76}\PY{p}{,}\PY{l+m+mf}{2721.33}\PY{p}{,}\PY{l+m+mf}{2689.86}\PY{p}{,}\PY{l+m+mf}{2689.86}\PY{p}{,}\PY{l+m+mf}{2724.01}\PY{p}{,}\PY{l+m+mf}{2705.27}\PY{p}{,}\PY{l+m+mf}{2734.62}\PY{p}{,}\PY{l+m+mf}{2746.87}\PY{p}{,}\PY{l+m+mf}{2748.8}\PY{p}{,}\PY{l+m+mf}{2772.35}\PY{p}{,}\PY{l+m+mf}{2770.37}\PY{p}{,}\PY{l+m+mf}{2779.03}\PY{p}{,}\PY{l+m+mi}{2782}\PY{p}{,}\PY{l+m+mf}{2786.85}\PY{p}{,}\PY{l+m+mf}{2775.63}\PY{p}{,}\PY{l+m+mf}{2782.49}\PY{p}{,}\PY{l+m+mf}{2779.66}\PY{p}{,}\PY{l+m+mf}{2773.75}\PY{p}{,}\PY{l+m+mf}{2762.59}\PY{p}{,}\PY{l+m+mf}{2767.32}\PY{p}{,}\PY{l+m+mf}{2749.76}\PY{p}{,}\PY{l+m+mf}{2754.88}\PY{p}{,}\PY{l+m+mf}{2717.07}\PY{p}{,}\PY{l+m+mf}{2723.06}\PY{p}{,}\PY{l+m+mf}{2699.63}\PY{p}{,}\PY{l+m+mf}{2716.31}\PY{p}{,}\PY{l+m+mf}{2718.37}\PY{p}{,}\PY{l+m+mf}{2726.71}\PY{p}{,}\PY{l+m+mf}{2713.22}\PY{p}{,}\PY{l+m+mf}{2736.61}\PY{p}{,}\PY{l+m+mf}{2736.61}\PY{p}{,}\PY{l+m+mf}{2759.82}\PY{p}{,}\PY{l+m+mf}{2784.17}\PY{p}{,}\PY{l+m+mf}{2793.84}\PY{p}{,}\PY{l+m+mf}{2774.02}\PY{p}{,}\PY{l+m+mf}{2798.29}\PY{p}{]}
+        \PY{n}{Y\PYZus{}SPOT} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{35.5}\PY{p}{,}\PY{l+m+mf}{35.86}\PY{p}{,}\PY{l+m+mf}{36.35}\PY{p}{,}\PY{l+m+mf}{36.38}\PY{p}{,}\PY{l+m+mf}{36.43}\PY{p}{,}\PY{l+m+mf}{36.47}\PY{p}{,}\PY{l+m+mf}{36.41}\PY{p}{,}\PY{l+m+mf}{36.07}\PY{p}{,}\PY{l+m+mf}{35.82}\PY{p}{,}\PY{l+m+mf}{35.57}\PY{p}{,}\PY{l+m+mf}{35.62}\PY{p}{,}\PY{l+m+mf}{35.94}\PY{p}{,}\PY{l+m+mf}{35.77}\PY{p}{,}\PY{l+m+mf}{35.98}\PY{p}{,}\PY{l+m+mf}{34.76}\PY{p}{,}\PY{l+m+mf}{34.82}\PY{p}{,}\PY{l+m+mf}{34.77}\PY{p}{,}\PY{l+m+mf}{35.27}\PY{p}{,}\PY{l+m+mf}{35.3}\PY{p}{,}\PY{l+m+mf}{35.39}\PY{p}{,}\PY{l+m+mf}{35.28}\PY{p}{,}\PY{l+m+mf}{34.88}\PY{p}{,}\PY{l+m+mf}{34.93}\PY{p}{,}\PY{l+m+mf}{35.47}\PY{p}{,}\PY{l+m+mf}{35.54}\PY{p}{,}\PY{l+m+mf}{35.75}\PY{p}{,}\PY{l+m+mi}{35}\PY{p}{,}\PY{l+m+mf}{34.83}\PY{p}{,}\PY{l+m+mf}{34.91}\PY{p}{,}\PY{l+m+mf}{35.3}\PY{p}{,}\PY{l+m+mf}{35.49}\PY{p}{,}\PY{l+m+mf}{35.52}\PY{p}{,}\PY{l+m+mf}{35.6}\PY{p}{,}\PY{l+m+mf}{35.51}\PY{p}{,}\PY{l+m+mf}{35.52}\PY{p}{,}\PY{l+m+mf}{35.82}\PY{p}{,}\PY{l+m+mf}{36.54}\PY{p}{,}\PY{l+m+mf}{37.36}\PY{p}{,}\PY{l+m+mf}{37.23}\PY{p}{,}\PY{l+m+mf}{37.23}\PY{p}{,}\PY{l+m+mf}{37.67}\PY{p}{,}\PY{l+m+mf}{36.91}\PY{p}{,}\PY{l+m+mi}{37}\PY{p}{,}\PY{l+m+mf}{37.35}\PY{p}{,}\PY{l+m+mf}{37.89}\PY{p}{,}\PY{l+m+mf}{38.21}\PY{p}{,}\PY{l+m+mf}{38.79}\PY{p}{,}\PY{l+m+mf}{38.88}\PY{p}{,}\PY{l+m+mf}{38.59}\PY{p}{,}\PY{l+m+mf}{38.7}\PY{p}{,}\PY{l+m+mf}{38.88}\PY{p}{,}\PY{l+m+mf}{39.1}\PY{p}{,}\PY{l+m+mf}{39.42}\PY{p}{,}\PY{l+m+mf}{40.3}\PY{p}{,}\PY{l+m+mf}{40.26}\PY{p}{,}\PY{l+m+mf}{40.58}\PY{p}{,}\PY{l+m+mf}{40.58}\PY{p}{,}\PY{l+m+mf}{40.38}\PY{p}{,}\PY{l+m+mf}{42.15}\PY{p}{,}\PY{l+m+mf}{43.45}\PY{p}{,}\PY{l+m+mf}{43.78}\PY{p}{,}\PY{l+m+mf}{43.85}\PY{p}{,}\PY{l+m+mf}{44.93}\PY{p}{,}\PY{l+m+mf}{45.33}\PY{p}{,}\PY{l+m+mf}{45.21}\PY{p}{,}\PY{l+m+mf}{45.47}\PY{p}{,}\PY{l+m+mf}{44.89}\PY{p}{,}\PY{l+m+mf}{45.88}\PY{p}{,}\PY{l+m+mf}{45.76}\PY{p}{,}\PY{l+m+mf}{45.02}\PY{p}{,}\PY{l+m+mf}{45.12}\PY{p}{,}\PY{l+m+mf}{45.35}\PY{p}{,}\PY{l+m+mf}{45.61}\PY{p}{,}\PY{l+m+mf}{45.15}\PY{p}{,}\PY{l+m+mf}{46.48}\PY{p}{,}\PY{l+m+mf}{45.12}\PY{p}{,}\PY{l+m+mf}{45.25}\PY{p}{,}\PY{l+m+mf}{44.64}\PY{p}{,}\PY{l+m+mf}{43.37}\PY{p}{,}\PY{l+m+mf}{42.98}\PY{p}{,}\PY{l+m+mf}{43.13}\PY{p}{,}\PY{l+m+mf}{42.6}\PY{p}{,}\PY{l+m+mf}{42.34}\PY{p}{,}\PY{l+m+mf}{42.14}\PY{p}{,}\PY{l+m+mf}{41.7}\PY{p}{,}\PY{l+m+mf}{42.11}\PY{p}{,}\PY{l+m+mf}{42.11}\PY{p}{,}\PY{l+m+mf}{42.66}\PY{p}{,}\PY{l+m+mf}{43.57}\PY{p}{,}\PY{l+m+mi}{43}\PY{p}{,}\PY{l+m+mf}{42.86}\PY{p}{,}\PY{l+m+mf}{43.6}\PY{p}{,}\PY{l+m+mf}{43.88}\PY{p}{,}\PY{l+m+mf}{44.88}\PY{p}{,}\PY{l+m+mf}{44.97}\PY{p}{,}\PY{l+m+mf}{44.29}\PY{p}{,}\PY{l+m+mf}{44.46}\PY{p}{,}\PY{l+m+mf}{44.46}\PY{p}{,}\PY{l+m+mf}{44.17}\PY{p}{,}\PY{l+m+mf}{44.92}\PY{p}{,}\PY{l+m+mf}{43.81}\PY{p}{,}\PY{l+m+mf}{43.09}\PY{p}{,}\PY{l+m+mf}{42.79}\PY{p}{,}\PY{l+m+mf}{43.05}\PY{p}{,}\PY{l+m+mf}{42.8}\PY{p}{,}\PY{l+m+mf}{42.15}\PY{p}{,}\PY{l+m+mf}{42.02}\PY{p}{,}\PY{l+m+mf}{42.02}\PY{p}{,}\PY{l+m+mf}{41.67}\PY{p}{,}\PY{l+m+mf}{41.53}\PY{p}{,}\PY{l+m+mf}{41.4}\PY{p}{,}\PY{l+m+mf}{40.81}\PY{p}{,}\PY{l+m+mf}{40.95}\PY{p}{,}\PY{l+m+mf}{42.15}\PY{p}{,}\PY{l+m+mf}{42.49}\PY{p}{,}\PY{l+m+mf}{42.52}\PY{p}{,}\PY{l+m+mf}{42.16}\PY{p}{,}\PY{l+m+mf}{42.02}\PY{p}{,}\PY{l+m+mf}{41.8}\PY{p}{,}\PY{l+m+mf}{41.8}\PY{p}{,}\PY{l+m+mf}{41.31}\PY{p}{,}\PY{l+m+mf}{41.38}\PY{p}{,}\PY{l+m+mf}{40.99}\PY{p}{,}\PY{l+m+mf}{41.8}\PY{p}{,}\PY{l+m+mf}{41.8}\PY{p}{,}\PY{l+m+mf}{42.82}\PY{p}{,}\PY{l+m+mf}{44.14}\PY{p}{,}\PY{l+m+mf}{44.01}\PY{p}{,}\PY{l+m+mf}{44.22}\PY{p}{,}\PY{l+m+mf}{44.05}\PY{p}{,}\PY{l+m+mi}{43}\PY{p}{,}\PY{l+m+mf}{44.19}\PY{p}{,}\PY{l+m+mf}{44.07}\PY{p}{,}\PY{l+m+mf}{44.19}\PY{p}{,}\PY{l+m+mf}{44.19}\PY{p}{,}\PY{l+m+mf}{44.03}\PY{p}{,}\PY{l+m+mf}{43.86}\PY{p}{,}\PY{l+m+mf}{43.15}\PY{p}{,}\PY{l+m+mf}{43.29}\PY{p}{,}\PY{l+m+mf}{43.38}\PY{p}{,}\PY{l+m+mf}{44.16}\PY{p}{,}\PY{l+m+mf}{43.16}\PY{p}{,}\PY{l+m+mf}{43.49}\PY{p}{,}\PY{l+m+mf}{43.02}\PY{p}{,}\PY{l+m+mf}{42.7}\PY{p}{,}\PY{l+m+mf}{42.41}\PY{p}{,}\PY{l+m+mf}{42.43}\PY{p}{,}\PY{l+m+mi}{41}\PY{p}{,}\PY{l+m+mf}{39.54}\PY{p}{,}\PY{l+m+mf}{41.86}\PY{p}{,}\PY{l+m+mf}{42.39}\PY{p}{,}\PY{l+m+mf}{40.75}\PY{p}{,}\PY{l+m+mf}{41.46}\PY{p}{,}\PY{l+m+mi}{42}\PY{p}{,}\PY{l+m+mf}{41.4}\PY{p}{,}\PY{l+m+mf}{41.81}\PY{p}{,}\PY{l+m+mf}{41.85}\PY{p}{,}\PY{l+m+mf}{41.09}\PY{p}{,}\PY{l+m+mf}{40.77}\PY{p}{,}\PY{l+m+mf}{40.77}\PY{p}{,}\PY{l+m+mf}{40.56}\PY{p}{,}\PY{l+m+mf}{40.91}\PY{p}{,}\PY{l+m+mf}{40.91}\PY{p}{,}\PY{l+m+mf}{41.54}\PY{p}{,}\PY{l+m+mf}{40.17}\PY{p}{,}\PY{l+m+mf}{39.35}\PY{p}{,}\PY{l+m+mf}{37.79}\PY{p}{,}\PY{l+m+mf}{37.43}\PY{p}{,}\PY{l+m+mf}{37.74}\PY{p}{,}\PY{l+m+mf}{37.93}\PY{p}{,}\PY{l+m+mf}{37.74}\PY{p}{,}\PY{l+m+mf}{37.84}\PY{p}{,}\PY{l+m+mf}{37.84}\PY{p}{,}\PY{l+m+mf}{37.83}\PY{p}{,}\PY{l+m+mf}{38.01}\PY{p}{,}\PY{l+m+mf}{37.69}\PY{p}{,}\PY{l+m+mf}{37.85}\PY{p}{,}\PY{l+m+mf}{37.94}\PY{p}{,}\PY{l+m+mf}{37.01}\PY{p}{,}\PY{l+m+mf}{36.89}\PY{p}{,}\PY{l+m+mf}{37.58}\PY{p}{,}\PY{l+m+mf}{36.35}\PY{p}{,}\PY{l+m+mf}{35.17}\PY{p}{,}\PY{l+m+mf}{35.99}\PY{p}{,}\PY{l+m+mf}{34.87}\PY{p}{,}\PY{l+m+mf}{35.47}\PY{p}{,}\PY{l+m+mf}{36.34}\PY{p}{,}\PY{l+m+mf}{35.76}\PY{p}{,}\PY{l+m+mf}{35.76}\PY{p}{,}\PY{l+m+mf}{36.94}\PY{p}{,}\PY{l+m+mf}{38.03}\PY{p}{,}\PY{l+m+mi}{38}\PY{p}{,}\PY{l+m+mf}{37.68}\PY{p}{,}\PY{l+m+mf}{37.83}\PY{p}{,}\PY{l+m+mf}{39.07}\PY{p}{,}\PY{l+m+mi}{39}\PY{p}{,}\PY{l+m+mf}{38.83}\PY{p}{,}\PY{l+m+mf}{38.73}\PY{p}{,}\PY{l+m+mf}{39.17}\PY{p}{,}\PY{l+m+mf}{39.22}\PY{p}{,}\PY{l+m+mf}{38.93}\PY{p}{,}\PY{l+m+mf}{37.77}\PY{p}{,}\PY{l+m+mf}{37.61}\PY{p}{,}\PY{l+m+mf}{37.69}\PY{p}{,}\PY{l+m+mf}{37.93}\PY{p}{,}\PY{l+m+mf}{38.11}\PY{p}{,}\PY{l+m+mf}{38.25}\PY{p}{,}\PY{l+m+mf}{37.65}\PY{p}{,}\PY{l+m+mf}{36.74}\PY{p}{,}\PY{l+m+mf}{36.42}\PY{p}{,}\PY{l+m+mf}{36.2}\PY{p}{,}\PY{l+m+mf}{36.15}\PY{p}{,}\PY{l+m+mf}{36.71}\PY{p}{,}\PY{l+m+mf}{36.34}\PY{p}{,}\PY{l+m+mf}{36.33}\PY{p}{,}\PY{l+m+mf}{36.27}\PY{p}{,}\PY{l+m+mf}{37.16}\PY{p}{,}\PY{l+m+mf}{36.89}\PY{p}{,}\PY{l+m+mf}{36.63}\PY{p}{,}\PY{l+m+mf}{36.94}\PY{p}{,}\PY{l+m+mf}{38.03}\PY{p}{,}\PY{l+m+mf}{38.3}\PY{p}{,}\PY{l+m+mf}{37.79}\PY{p}{,}\PY{l+m+mf}{38.09}\PY{p}{,}\PY{l+m+mf}{38.28}\PY{p}{,}\PY{l+m+mf}{37.85}\PY{p}{,}\PY{l+m+mf}{38.39}\PY{p}{,}\PY{l+m+mf}{38.3}\PY{p}{,}\PY{l+m+mf}{37.38}\PY{p}{,}\PY{l+m+mf}{37.38}\PY{p}{,}\PY{l+m+mf}{37.83}\PY{p}{,}\PY{l+m+mf}{42.7}\PY{p}{,}\PY{l+m+mf}{43.2}\PY{p}{,}\PY{l+m+mf}{43.78}\PY{p}{,}\PY{l+m+mf}{43.41}\PY{p}{,}\PY{l+m+mf}{43.93}\PY{p}{,}\PY{l+m+mf}{44.01}\PY{p}{,}\PY{l+m+mf}{44.25}\PY{p}{,}\PY{l+m+mf}{44.85}\PY{p}{,}\PY{l+m+mf}{44.18}\PY{p}{,}\PY{l+m+mf}{44.45}\PY{p}{,}\PY{l+m+mf}{43.57}\PY{p}{,}\PY{l+m+mf}{43.91}\PY{p}{,}\PY{l+m+mf}{43.95}\PY{p}{,}\PY{l+m+mf}{42.26}\PY{p}{,}\PY{l+m+mf}{41.95}\PY{p}{,}\PY{l+m+mf}{41.12}\PY{p}{,}\PY{l+m+mf}{41.25}\PY{p}{,}\PY{l+m+mf}{40.61}\PY{p}{,}\PY{l+m+mf}{41.01}\PY{p}{,}\PY{l+m+mf}{40.37}\PY{p}{,}\PY{l+m+mf}{40.52}\PY{p}{,}\PY{l+m+mf}{39.4}\PY{p}{,}\PY{l+m+mf}{39.5}\PY{p}{,}\PY{l+m+mf}{38.97}\PY{p}{,}\PY{l+m+mf}{39.47}\PY{p}{,}\PY{l+m+mf}{39.47}\PY{p}{,}\PY{l+m+mf}{39.16}\PY{p}{,}\PY{l+m+mf}{39.75}\PY{p}{,}\PY{l+m+mf}{40.09}\PY{p}{,}\PY{l+m+mf}{39.3}\PY{p}{,}\PY{l+m+mf}{39.27}\PY{p}{]}
+        
+        \PY{k+kn}{import} \PY{n+nn}{math}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{scipy.stats.stats} \PY{k+kn}{import} \PY{n}{pearsonr}
+        
+        \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{n+nb}{round}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}SPOT}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+        \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{n+nb}{round}\PY{p}{(}\PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Y\PYZus{}SPOT}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{sigmaX} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        \PY{n}{sigmaY} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}Pearson correlation cofficient}
+        \PY{n}{rho} \PY{o}{=} \PY{n}{pearsonr}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}No. of simulations}
+        \PY{n}{max\PYZus{}iter} \PY{o}{=} \PY{l+m+mi}{10000}
+        \PY{c+c1}{\PYZsh{}Resolution of discretization, no of days in year}
+        \PY{n}{res} \PY{o}{=} \PY{l+m+mi}{252}
+        \PY{n}{dt} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+        \PY{c+c1}{\PYZsh{}Initialising Payoff\PYZsq{}s list}
+        \PY{n}{P} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{;}
+        \PY{c+c1}{\PYZsh{}For every simulation}
+        \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{max\PYZus{}iter}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}ans stores the sum payoffs in a year at any point of time}
+            \PY{n}{ans}\PY{o}{=}\PY{l+m+mi}{0}
+            \PY{c+c1}{\PYZsh{}Initialising X and Y}
+            \PY{n}{X} \PY{o}{=} \PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{n}{Y} \PY{o}{=} \PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{;}
+            \PY{c+c1}{\PYZsh{}Drawing random variable from specified distribution}
+            \PY{n}{n1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{multivariate\PYZus{}normal}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{rho}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{n}{rho}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{res}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}for every day}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{res}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}Update X and Y}
+                \PY{n}{X} \PY{o}{=} \PY{n}{X} \PY{o}{+} \PY{n}{r}\PY{o}{*}\PY{n}{X}\PY{o}{*}\PY{n}{dt} \PY{o}{+} \PY{n}{sigmaX}\PY{o}{*}\PY{n}{n1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{p}{;}
+                \PY{n}{Y} \PY{o}{=} \PY{n}{Y} \PY{o}{+} \PY{n}{r}\PY{o}{*}\PY{n}{Y}\PY{o}{*}\PY{n}{dt} \PY{o}{+} \PY{n}{sigmaY}\PY{o}{*}\PY{n}{n1}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{dt}\PY{p}{)}\PY{p}{;}
+                \PY{c+c1}{\PYZsh{}If Ti=0.25*i*year}
+                \PY{k}{if} \PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZpc{}}\PY{k}{int}(0.25*res)==0:
+                    \PY{c+c1}{\PYZsh{}and conditions are met}
+                    \PY{k}{if} \PY{n}{Y}\PY{o}{\PYZlt{}}\PY{l+m+mf}{0.75}\PY{o}{*}\PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{or} \PY{n}{Y}\PY{o}{\PYZgt{}}\PY{l+m+mf}{1.25}\PY{o}{*}\PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{or} \PY{n}{X}\PY{o}{\PYZlt{}}\PY{l+m+mf}{0.75}\PY{o}{*}\PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o+ow}{or} \PY{n}{X}\PY{o}{\PYZgt{}}\PY{l+m+mf}{1.25}\PY{o}{*}\PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+                        \PY{k}{continue}\PY{p}{;}
+                    \PY{c+c1}{\PYZsh{}calculate payoffs}
+                    \PY{n}{ans}\PY{o}{+}\PY{o}{=}\PY{n+nb}{max}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{X}\PY{o}{/}\PY{n}{X\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{Y}\PY{o}{/}\PY{n}{Y\PYZus{}SPOT}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{\PYZsh{}append final ans to the list}
+            \PY{n}{P}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{ans}\PY{p}{)}\PY{p}{;}
+        \PY{k}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{P}\PY{p}{)}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{r}\PY{o}{*}\PY{n}{res}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.0
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
