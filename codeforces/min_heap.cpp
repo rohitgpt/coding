@@ -3,7 +3,7 @@
 using namespace std;
 
 typedef long long ll;
-tyepdef long double ld; 
+typedef long double ld; 
 #define all(c) (c).begin(), (c).end();
 #define tr(c, it) for(__typeof__((c).begin()) it=(c).begin(); it!=(c).end(); it++)
 #define f(i, a) for(ll (i)=0; (i)<(a); (i)++)
@@ -18,7 +18,7 @@ int lchild(int i){ return 2*i+1;}
 int rchild(int i){ return 2*i+2;}
 
 void swap(int* a, int* b){
-	int temp;
+	int* temp;
 	temp=b;
 	b=a;
 	a=temp;
@@ -26,14 +26,30 @@ void swap(int* a, int* b){
 }
 void insert(int a){
 	b.pb(a);
-	s = b.size()-1;
-	while(b[s]>b[parent(b)]){
-
+	int s = b.size()-1;
+	while(b[s]<b[parent(s)]){
+		swap(b[s], b[parent(s)]);
+		s=parent(s);
 	}
+	return;
 }
 
-void heapify(const vector<int>& a){
-	for()
+int pop(int i, int flag){
+	int ans=b[i];
+	if(flag==1){
+		swap(b[0], b[b.size()-1]);
+		b.resize(b.size()-1);
+	}
+	int smallest=i;
+	int left=lchild(i);
+	int right=rchild(i);
+	if(left<b.size() && b[smallest]>b[left]) smallest=left;
+	if(right<b.size() && b[smallest]>b[right]) smallest=right;
+	if(smallest!=i){
+		swap(b[smallest], b[i]);
+		pop(smallest, 0);
+	}
+	return ans;
 }
 
 int main(){
@@ -43,10 +59,10 @@ int main(){
 	int n;
 	cin>>n;
 	vector<int> a(n);
-	f(i, n)		cin>>a[i];
-	
-	heapify(a);
-	f(i, n) cout<<a[i]<<" ";
-	cout<<endl;
+	f(i, n){
+		cin>>a[i];
+		insert(a[i]);
+	}
+	f(i, n)	cout<<pop(0, 1);
 	return 0;
 }
