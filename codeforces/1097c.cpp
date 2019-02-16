@@ -23,12 +23,18 @@ int main(){
 	}
 	f(i, n){
 		fi(j, i+1, n){
-			if(i==j) continue;
-			if(a[i]>-1 && b[j]<1){
-				if(a[i]+b[j]==0) ans++;
-			}
+			if(i==j || !(a[i]>-1 && b[j]<1)) continue;
+			if(a[i]+b[j]==0) ans++;
 		}
 	}
-	cout<<ans<<endl;
+	int ans1=0;
+	f(j, n){
+		fi(i, j+1, n){
+			if(i==j || !(a[i]>-1 && b[j]<1)) continue;
+			if(a[i]+b[j]==0) ans1++;
+		}
+	}
+	
+	cout<<max(ans1,ans)<<endl;
 	return 0;
 }
