@@ -13,11 +13,10 @@ int main(){
 	b.resize(m, 0);
 	c.resize(n, 0);
 	f(i, m) cin>>a[i];
-	f(i, n-1) c[a[i]-1]+=1;
+	if(n<m) f(i, n-1) c[a[i]-1]+=1;
 	vector<ll>::iterator p = min_element(c.begin(), c.end());
 	fi(i, n-1, m){
 		c[a[i]-1]+=1;
-		if(i<cur*(n-1)) continue;
 		if(*p>=cur){
 			p = min_element(c.begin(), c.end());
 			if(*p>=cur){
